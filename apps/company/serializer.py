@@ -28,7 +28,9 @@ class ManufacturerSerializer(rest_serializers.ModelSerializer):
     def to_representation(self, instance):
         data = super(ManufacturerSerializer, self).to_representation(instance)
         volume = self.context['volume']
-        data.update({'total_price': instance.unit_price * decimal.Decimal(volume)})
+        data.update({'total_price': instance.unit_price * decimal.Decimal(volume),
+                     'volume_unit': instance.get_volume_unit(),
+                     'price_currency': instance.get_price_currency()})
         return data
 
 

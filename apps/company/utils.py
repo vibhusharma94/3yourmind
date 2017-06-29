@@ -23,7 +23,7 @@ def get_material_info(uuid):
     header = {"Authorization": "ApiKey " + api_key}
     response = requests.get(url, headers=header)
     try:
-        materials = response.json()
+        materials = response.json()['results']
     except Exception as e:
         print str(e)
         materials = dummy_materials
