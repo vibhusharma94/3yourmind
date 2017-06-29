@@ -1,0 +1,59 @@
+
+<div class="container">
+   
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default" style="margin-top:30px">
+                  <div class="panel-body">
+                        <h3 class="text-center">Material Suppliers Finder- powered by 3YourMind</h3>
+                        <form>
+                          <div class="form-group">
+                            <input type = "file" class="form-control" id="file" ng-model = "myFile"/>
+                          </div>
+                          <button class="btn btn-primary" ng-click = "uploadFile()">Upload file</button>
+                        </form>
+                        <div class="alert alert-warning" role="alert" ng-if="upload_error">{{upload_error}}</div>
+                  </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row" ng-if="materials">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default" style="margin-top:30px">
+                  <div class="panel-body">
+                        <h3 class="text-center">Materials</h3>
+                  </div>
+                  <ul class="list-group">
+                      <li class="list-group-item" ng-repeat="m in materials">
+                      <div class="media">
+                            <div class="media-body">
+                              <h4 class="media-heading">{{ m.name }}</h4>
+                              <p>Volume: {{m.volume}}</p>
+                            </div>
+                            <div class="media-right media-middle" style="border-left: 1px solid #e7e7e7;">
+                                  <p><a href="" class="btn pull-right button-blue" ng-click="fetch_suppliers(m)">
+                                    Find suppliers
+                                  </a></p>
+                            </div>
+                      </div>
+                      <div>
+                      <ul class="list-group" ng-if="m.suppliers">
+                      <h5>Suppliers</h5>
+                      <li class="list-group-item" ng-repeat="s in m.suppliers" style="background: #efefef;">
+                          <h4 class="media-heading">{{ s.company.name }}</h4>
+                          <p>Unit Price: {{s.unit_price}}</p>
+                          <p>Total Price: {{s.total_price}}</p>
+                      </li>
+                      </ul>
+                      </div>
+                      </li>
+                  </ul>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
